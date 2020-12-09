@@ -1,0 +1,7 @@
+<apex:page controller="TeacherController">
+    <apex:pageBlock >
+            <apex:pageBlockTable value="{!results}" var="a">
+                	<apex:column value="{!a.name}"/>
+                    </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

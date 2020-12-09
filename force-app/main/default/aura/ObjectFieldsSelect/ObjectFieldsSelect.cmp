@@ -1,0 +1,28 @@
+<aura:component controller = "MyMapController">
+    
+    <aura:attribute name = "optionsFields" type = "List" />
+    <aura:attribute name = "selectedFields" type = "List" />
+    
+	<aura:registerEvent name="updateQueryBox" type="c:UpdateQueryBox"/>
+    <aura:handler event="c:DisplayFieldsEvent" action="{!c.displayFields}" />
+    
+    <!--lightning:checkboxGroup name="Checkbox Group"
+                             label="Checkbox Group"
+                             options="{!v.optionsFields }"
+                             value="{!v.selectedFields }"
+                             onchange="{!c.selectFields }"/-->
+    <br/>
+    <div class="row">
+        <p class="title">Select Fields</p>
+        <ui:inputSelect multiple="true" class="multiple" aura:id="InputSelectMultiple" change="{!c.onMultiSelectChange}">
+            
+            <aura:iteration items="{!v.optionsFields}" var="item">
+                <ui:inputSelectOption text="{!item}"/>
+            </aura:iteration>
+            
+        </ui:inputSelect>
+        
+        <!--p><ui:outputText class="result" aura:id="multiResult" value="" /></p-->
+    </div>
+    
+</aura:component>

@@ -1,0 +1,41 @@
+<aura:component controller="MyMapController">
+    <aura:attribute name = "queryResults" type = "List"/>
+    <aura:attribute name = "selectedFieldsSave" type = "List" />
+    <aura:attribute name="selectedFields" type="List" />
+    <aura:attribute name="records" type="list" />
+    
+    <aura:handler event="c:UpdateQueryBox" action="{!c.updateQuery}" />
+    <!--aura:handler event="c:DisplayFieldsEvent" action="{!c.SelectedFieldsGet}" /-->
+    <aura:handler  event="c:QueryButtonClickHandler" action="{!c.QueryResults}" />
+    
+    <p>Query Results</p>
+    
+    <table border = "1" width = "100%">  
+        <tr>
+            <aura:iteration items="{!v.selectedFields}" var="item">
+                <th>{!item}</th>
+            </aura:iteration>
+        </tr>
+
+    <aura:iteration items="{!v.records}" var="record">
+        <tr>
+        <aura:iteration items="{!record}" var="r">
+            
+                <td>{!r}</td>
+           
+
+            <!--tr>
+                <aura:iteration items="{!v.selectedFields}" var="key">
+                
+                    
+                        <c:GetJSObjectValue map="{!record}" key="{!key}" />
+
+                
+                </aura:iteration> 
+            </tr-->
+        </aura:iteration>
+        </tr>
+    </aura:iteration>
+    </table>
+
+</aura:component>

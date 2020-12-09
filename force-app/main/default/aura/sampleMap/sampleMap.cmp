@@ -1,0 +1,21 @@
+<aura:component controller="MyMapController">
+
+    <aura:attribute name="lstKey" type="List"/>
+    <aura:attribute name="fullMap" type="map"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.fetchMapCtrl}" />
+	<aura:registerEvent name="selectObjectHandler" type="c:DisplayFieldsEvent" />
+    
+    <lightning:select aura:id = "selectObject" 
+                      name="selectObjects" 
+                      label="Please Select Object" 
+                      required="true" 
+                      onchange="{!c.showFields}">
+        
+        <aura:iteration items="{!v.lstKey}" var="key" >
+            <c:mapEntryChild map="{!v.fullMap}" key="{!key}"/>
+        </aura:iteration>
+        
+    </lightning:select>
+    
+</aura:component>

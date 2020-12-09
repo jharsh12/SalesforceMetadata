@@ -1,0 +1,72 @@
+<apex:page controller="InstituteController" >
+    
+    <br/>
+    
+    <apex:form >
+        <apex:selectList value="{!selectedInstitute}" size="1" id="instituteList">
+            <apex:actionSupport event="onchange" action="{!selectInstitute}" reRender="instituteRecords"/>
+            <apex:selectOptions value="{!institutes}"/>
+        </apex:selectList>
+        
+        
+        <apex:actionFunction name="MentorInstance" action="{!MentorInstanceCall}" reRender="instituteRecords">
+            <apex:param name="mentorName" value="" assignTo="{!selectedMentor}"/> 
+        </apex:actionFunction>
+    </apex:form>
+    
+    
+    <br/>
+    
+    <apex:outputpanel id="instituteRecords">
+        
+        <table border = "1">
+            <caption> All Mentors</caption>
+            <tr>
+                <th>Mentor Name</th>	
+                <th>Designation</th>
+            </tr>
+            
+            <apex:repeat id="student_record" var="m" value="{!mentorsList}">  
+                <tr>
+                    <td>
+                        <apex:form >
+                            <span onclick="MentorInstance('{!m.name}');">
+                             {!m.name}
+                            </span> 
+                        </apex:form> 
+                    </td>
+                    <td>{!m.designation}</td>
+                </tr>           
+                
+                <apex:actionRegion rendered="{!m.name=selectedMentor}">
+                    <tr>
+                        <td></td>
+                        <td>
+                            <table border = "1">
+                                
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Class</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                </tr>
+                                
+                                <apex:repeat var="s" value="{!students}" >   
+                                    <tr>
+                                        <td> {!s.name} </td>
+                                        <td> {!s.Class__c} </td>
+                                        <td> {!s.City__c} </td>
+                                        <td> {!s.State__c} </td>
+                                    </tr>
+                                </apex:repeat> 
+                                
+                            </table>
+                        </td>
+                    </tr>
+                </apex:actionRegion>
+            </apex:repeat> 
+            
+        </table>
+        
+    </apex:outputpanel>
+</apex:page>

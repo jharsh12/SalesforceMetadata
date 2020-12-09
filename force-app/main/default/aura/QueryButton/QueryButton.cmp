@@ -1,0 +1,13 @@
+<aura:component>
+    
+    <aura:attribute name="objectSelected" type="String"/>
+    <aura:attribute name = "query" type = "List"/>
+    
+    <aura:registerEvent name="queryButtonClickHandler" type="c:QueryButtonClickHandler"/>
+    
+    <aura:handler  event="c:UpdateQueryBox" action="{!c.updateQuery}" />
+    <aura:handler  event="c:DisplayFieldsEvent" action="{!c.syncObject}" />
+    
+    <lightning:button variant="brand" label="Query" title="Query" onclick="{!c.callQuery}"/><br/>
+    
+</aura:component>

@@ -1,0 +1,15 @@
+<aura:component>
+    
+    <aura:handler event="c:UpdateQueryBox" action="{!c.updateQuery}" />
+    <aura:handler event="c:DisplayFieldsEvent" action="{!c.syncObject}" />
+
+    <aura:attribute name = "query" type = "List"/>
+    <aura:attribute name="objectSelected" type="String"/>
+ 
+	<br/>
+        
+    <div class="row">
+        <h2 class="header"></h2>
+        <lightning:textarea name="querySelectedFields" label="SQL Query:"  value = "{!v.query}" />
+    </div>
+</aura:component>
